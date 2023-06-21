@@ -30,4 +30,9 @@ public class UserController {
     public List<User> readAllUsers(){
         return repository.getAllUsers();
     }
+
+    public User updatedUser(User user) {
+       User newUser = repository.updateUser(user);
+       return newUser;
+    }
 }
