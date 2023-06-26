@@ -1,10 +1,7 @@
 package personal;
 
 import personal.controllers.UserController;
-import personal.model.FileOperation;
-import personal.model.FileOperationImpl;
-import personal.model.Repository;
-import personal.model.RepositoryFile;
+import personal.model.*;
 import personal.views.ViewUser;
 
 public class Main {

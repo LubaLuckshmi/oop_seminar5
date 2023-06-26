@@ -13,7 +13,7 @@ public class UserController {
     }
 
     public void saveUser(User user) {
-        repository.CreateUser(user);
+        repository.createUser(user);
     }
 
     public User readUser(String userId) throws Exception {
@@ -23,16 +23,18 @@ public class UserController {
                 return user;
             }
         }
-
         throw new Exception("User not found");
     }
 
-    public List<User> readAllUsers(){
+    public List<User> readAllUsers() {
         return repository.getAllUsers();
     }
 
     public User updatedUser(User user) {
-       User newUser = repository.updateUser(user);
-       return newUser;
+        return repository.updateUser(user);
+    }
+
+    public User deleteUser(User user) {
+        return repository.deleteUser(user);
     }
 }

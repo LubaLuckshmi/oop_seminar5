@@ -8,6 +8,7 @@ import java.util.List;
 
 import java.util.Scanner;
 
+
 public class ViewUser {
 
     private UserController userController;
@@ -37,10 +38,31 @@ public class ViewUser {
                     case UPDATE:
                         updateUser();
                         break;
+                    case HELP:
+                        showHelp();
+                        break;
+                    case DELETE:
+                        deleteUser();
+                        break;
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void deleteUser() throws Exception {
+        readList();
+        User user = getUser();
+        User deletedUser = userController.deleteUser(user);
+        System.out.println("Удалили: ");
+        System.out.println(deletedUser);
+    }
+
+    private void showHelp() {
+        System.out.println("Список команд:");
+        for(Commands c : Commands.values()) {
+            System.out.println(c);
         }
     }
 
@@ -50,8 +72,10 @@ public class ViewUser {
         User newUser = getNewUser();
         newUser.setId(user.getId());
         User savedUser = userController.updatedUser(newUser);
+        System.out.println("Обновили: ");
         System.out.println(savedUser);
     }
+
 
     private void readList() {
         List<User> listUsers = userController.readAllUsers();
