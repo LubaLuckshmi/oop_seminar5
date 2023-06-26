@@ -1,5 +1,7 @@
 package personal.model;
 
+import java.util.Objects;
+
 public class User {
     private String id = "";
     private String firstName;
@@ -51,6 +53,18 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("Идентафикатор: %s\nИмя: %s,\nФамилия: %s,\nТелефон: %s", id, firstName, lastName, phone);
+        return String.format("Идентификатор: %s\nИмя: %s,\nФамилия: %s,\nТелефон: %s", id, firstName, lastName, phone);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User user) {
+            return this.id.equals(user.id) && this.firstName.equals(user.firstName) && this.lastName.equals(user.getLastName());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, phone);
     }
 }

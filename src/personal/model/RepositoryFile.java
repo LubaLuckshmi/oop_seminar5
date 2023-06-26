@@ -1,5 +1,7 @@
 package personal.model;
 
+import personal.model.map.UserMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class RepositoryFile implements Repository {
 
     public RepositoryFile(FileOperation fileOperation) {
         this.fileOperation = fileOperation;
+
     }
 
     @Override
@@ -21,8 +24,9 @@ public class RepositoryFile implements Repository {
         return users;
     }
 
+
     @Override
-    public String CreateUser(User user) {
+    public String createUser(User user) {
 
         List<User> users = getAllUsers();
         int max = 0;
@@ -61,6 +65,14 @@ public class RepositoryFile implements Repository {
         }
         List<String> lines = mapToString(users);
         fileOperation.saveAllLines(lines);
+        return user;
+    }
+
+    @Override
+    public User deleteUser(User user) {
+        List<User> users = getAllUsers();
+        users.remove(user);
+        fileOperation.saveAllLines(mapToString(users));
         return user;
     }
 }
